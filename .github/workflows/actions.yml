@@ -23,4 +23,10 @@ jobs:
           pip install -r requirements.txt
 
       - name: execute py script # run main.py
+        env:
+          LOCATION: ${{ secrets.LOCATION }}
+          NUMBER: ${{ secrets.NUMBER }}
+          FROM: ${{ secrets.LOCATION }}
+          TO: ${{ secrets.LOCATION }}
+          PASSWORD: ${{ secrets.LOCATION }}
         run: python test.py

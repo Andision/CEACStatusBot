@@ -1,3 +1,9 @@
+import os
 from CEACStatusBot import query_status,OnnxCaptchaHandle
 
-print(query_status("BEJ","AA00B7QPGN",OnnxCaptchaHandle("captcha.onnx")))
+try:
+    LOCATION = os.environ["LOCATION"]
+    NUMBER = os.environ["NUMBER"]
+    print(query_status(LOCATION,NUMBER,OnnxCaptchaHandle("captcha.onnx")))
+except KeyError:
+    print("ENV Error")
