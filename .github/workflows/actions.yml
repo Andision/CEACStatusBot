@@ -1,6 +1,9 @@
 name: run main.py
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
   schedule:
     - cron: '13,43 * * * *' # At 00:00 on Monday
@@ -26,7 +29,7 @@ jobs:
         env:
           LOCATION: ${{ secrets.LOCATION }}
           NUMBER: ${{ secrets.NUMBER }}
-          FROM: ${{ secrets.LOCATION }}
-          TO: ${{ secrets.LOCATION }}
-          PASSWORD: ${{ secrets.LOCATION }}
+          FROM: ${{ secrets.FROM }}
+          TO: ${{ secrets.TO }}
+          PASSWORD: ${{ secrets.PASSWORD }}
         run: python trigger.py
