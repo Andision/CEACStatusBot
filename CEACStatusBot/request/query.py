@@ -2,13 +2,16 @@ import requests
 from bs4 import BeautifulSoup
 import base64
 import os
+import time
 
 from CEACStatusBot.captcha import CaptchaHandle, ManualCaptchaHandle
 
 def query_status(location, application_num, captchaHandle:CaptchaHandle=ManualCaptchaHandle()):
     isSuccess = False
+    failCount = 0
 
-    while not isSuccess:
+    while not isSuccess and failCount<5:
+        failCount += 1
         headers = {
             "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36",
             "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
@@ -99,11 +102,13 @@ def query_status(location, application_num, captchaHandle:CaptchaHandle=ManualCa
         isSuccess = True
         result = {
             "success": True,
+            "time": str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())),
             "visa_type": visa_type,
             "status": status,
             "case_created": case_created,
             "case_last_updated": case_last_updated,
             "description": description,
             "application_num": application_num_returned,
+            "application_num_origin":application_num
         }
     return result

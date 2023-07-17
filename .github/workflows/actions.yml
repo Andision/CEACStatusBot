@@ -29,4 +29,4 @@ jobs:
           FROM: ${{ secrets.LOCATION }}
           TO: ${{ secrets.LOCATION }}
           PASSWORD: ${{ secrets.LOCATION }}
-        run: python test.py
+        run: python trigger.py
