@@ -5,7 +5,7 @@ from CEACStatusBot.captcha import CaptchaHandle,OnnxCaptchaHandle
 class NotificationManager():
     def __init__(self,location:str,number:str,captchaHandle:CaptchaHandle=OnnxCaptchaHandle("captcha.onnx")) -> None:
         self.__handleList = []
-        self,__location = location
+        self.__location = location
         self.__number = number
         self.__captchaHandle = captchaHandle
 
