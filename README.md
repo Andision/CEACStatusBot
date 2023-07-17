@@ -1,6 +1,6 @@
 # CEACStatusBot🤖
  
-automatically check your U.S. visa application status and notice you instantly!
+automatically check your U.S. visa application status in [CEAC](https://ceac.state.gov/CEACStatTracker/Status.aspx?App=NIV) and notice you instantly!
 
 ## Usage
 
