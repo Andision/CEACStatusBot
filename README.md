@@ -18,6 +18,8 @@ You can deploy it to your own machine, but it is highly recomanded to use Github
 
 - PASSWORD: the password of the `FROM` email. Notice: for some email, such as QQ Mail, you should use "authorization code" instead of your password here, because this repo use SMTP to send email. Check the SMTP usage of your Mailbox Service Provider for more details.
 
+- TIMEZONE: optional, set your timezone to avoid disturbing during sleep. :-) Some example: `Asia/Shanghai` `America/New_York`
+
 ### Github Actions
 
 1. folk this repo
