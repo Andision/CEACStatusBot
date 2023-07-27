@@ -32,4 +32,5 @@ jobs:
           FROM: ${{ secrets.FROM }}
           TO: ${{ secrets.TO }}
           PASSWORD: ${{ secrets.PASSWORD }}
+          TIMEZONE: ${{ secrets.TIMEZONE }}
         run: python trigger.py
