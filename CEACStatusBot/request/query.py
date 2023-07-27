@@ -4,9 +4,9 @@ import base64
 import os
 import time
 
-from CEACStatusBot.captcha import CaptchaHandle, ManualCaptchaHandle
+from CEACStatusBot.captcha import CaptchaHandle, OnnxCaptchaHandle
 
-def query_status(location, application_num, captchaHandle:CaptchaHandle=ManualCaptchaHandle()):
+def query_status(location, application_num, captchaHandle:CaptchaHandle=OnnxCaptchaHandle("captcha.onnx")):
     isSuccess = False
     failCount = 0
 
@@ -27,7 +27,14 @@ def query_status(location, application_num, captchaHandle:CaptchaHandle=ManualCa
         # if not os.path.exists("tmp"):
         #     os.mkdir("tmp")
         # -------NIV page------
-        r = session.get(url=f"{ROOT}/ceacstattracker/status.aspx?App=NIV", headers=headers)
+        try:
+            # 发送请求的代码
+            r = session.get(url=f"{ROOT}/ceacstattracker/status.aspx?App=NIV", headers=headers)
+        except Exception as e:
+            # 处理连接错误异常
+            print(e)
+            isSuccess = False
+            continue
         # with open("tmp/NIV.html", "w") as f:
         #     f.write(r.text)
         soup = BeautifulSoup(r.text, features="lxml")
@@ -80,7 +87,14 @@ def query_status(location, application_num, captchaHandle:CaptchaHandle=ManualCa
         # logger.info(f"{ROOT}/ceacstattracker/status.aspx")
 
         # -------Result page------
-        r = session.post(url=f"{ROOT}/ceacstattracker/status.aspx", headers=headers, data=data)
+        try:
+            # 发送请求的代码
+            r = session.post(url=f"{ROOT}/ceacstattracker/status.aspx", headers=headers, data=data)
+        except Exception as e:
+            # 处理连接错误异常
+            print(e)
+            isSuccess = False
+            continue
         # with open("tmp/RESULT.html", "w") as f:
         #     f.write(r.text)
 
@@ -110,5 +124,10 @@ def query_status(location, application_num, captchaHandle:CaptchaHandle=ManualCa
             "description": description,
             "application_num": application_num_returned,
             "application_num_origin":application_num
+        }
+
+    if not isSuccess:
+        result = {
+            "success": False,
         }
     return result
