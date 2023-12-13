@@ -81,7 +81,7 @@ Telegram Bot [创建教程](https://www.cytron.io/tutorial/how-to-create-a-teleg
 
 ### 开发者
 
-[h4x3rotab](https://github.com/h4x3rotab) : Telegram bot, Adaption to new CEAC interface
+[h4x3rotab](https://github.com/h4x3rotab) : Telegram bot, 适配新版CEAC接口
 
 ### 相关项目
 
