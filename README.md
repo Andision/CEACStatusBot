@@ -14,13 +14,33 @@ You can deploy it to your own machine, but it is highly recomanded to use Github
 
 - NUMBER: your Application ID or Case Number help icon (e.g., AA0020AKAX or 2012118 345 0001) 
 
+- PASSPORT_NUMBER: your passport number
+
+- SURNAME: first 5 Letters of surname
+
+- TIMEZONE: optional, set your timezone to avoid disturbing during sleep. :-) Some example: `Asia/Shanghai` `America/New_York`
+
+#### Notification by Email
+
+Add the following env variables if you want to send notification by email.
+
 - FROM: the email address you use to send the notification.
 
 - TO: the email address you want the notification sent to. You can send to more than one email, split the email address with "|" and without space. Here is an example: `first@email.com|second@email.com|third@email.com`
 
 - PASSWORD: the password of the `FROM` email. Notice: for some email, such as QQ Mail, you should use "authorization code" instead of your password here, because this repo use SMTP to send email. Check the SMTP usage of your Mailbox Service Provider for more details.
 
-- TIMEZONE: optional, set your timezone to avoid disturbing during sleep. :-) Some example: `Asia/Shanghai` `America/New_York`
+- SMTP: (optional) specify the smtp server to send the email (e.g. `smtp.example.com`, `smtp.example.com:587`)
+
+#### Notification by Telegram bot
+
+Add the following env variables if you want to send notification by a Telegram bot.
+
+Create a Telegram bot and get the info below according to [this tutorial](https://www.cytron.io/tutorial/how-to-create-a-telegram-bot-get-the-api-key-and-chat-id).
+
+- TG_BOT_TOKEN: the bot token
+
+- TG_CHAT_ID: the chat id you want to receive the notification
 
 ### Github Actions
 
@@ -29,12 +49,12 @@ You can deploy it to your own machine, but it is highly recomanded to use Github
 2. set your Environment Variables in `Github -> Settings -> Secrets and variables -> Actions -> New repository secret`
 ![image](docs/github.new.secret.png)
 
-3. check your workflow in Actions and your Mailbox
+3. check your workflow in Actions and your Mailbox / Telegram
 
 ## TODO
 
 - [x] Send Email to multiple emails.
-- [ ] Add more third-party notification services.
+- [x] Add more third-party notification services.
 - [ ] More human-friendly interface.
 
 ## Special Thanks
