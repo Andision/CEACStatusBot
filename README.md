@@ -59,6 +59,12 @@ Create a Telegram bot and get the info below according to [this tutorial](https:
 
 ## Special Thanks
 
+### Contributor
+
+[h4x3rotab](https://github.com/h4x3rotab) : Telegram bot, Adaption to new CEAC interface
+
+### Related Project
+
 Part of the code in this repo refers to the following project. Thank you for your pretty work.
 
 - [ceac_tracker](https://github.com/lixin-wei/ceac_tracker)
