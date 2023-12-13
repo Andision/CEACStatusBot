@@ -25,20 +25,35 @@
 
 - NUMBER: 您在CEAC网站中的Application ID or Case Number(例如`AA0020AKAX` 或 `2012118 345 0001`)。具体信息请查看[CEAC](https://ceac.state.gov/CEACStatTracker/Status.aspx?App=NIV)网站的说明。**注意**: 请先在[CEAC](https://ceac.state.gov/CEACStatTracker/Status.aspx?App=NIV)网站确认你能够正确获取你的签证状态。这一项目的目的是简化从[CEAC](https://ceac.state.gov/CEACStatTracker/Status.aspx?App=NIV)网站获取签证信息的过程，并不能比人工方式获得更多的信息。
 
+- PASSPORT_NUMBER: 护照号码
+
+- SURNAME: 姓的前5个英文字母
+
+- TIMEZONE: 可选，设置自己的时区，以免打扰睡眠。例如: `Asia/Shanghai` 或 `America/New_York`。如果你设置了时区，程序默认不会在你的时区的晚上10点到第二天早上8点发送。**注意**: 这里使用的是IANA时区数据库的时区表示法，并不是简单的地理位置的组合。例如，如果你希望使用北京时间，你的时区应该是`Asia/Shanghai`而**不是** ~~`Asia/Beijing`~~
+
+#### 邮件通知
+
+如果你想收到邮件通知，需要设置如下环境变量：
 
 - FROM: 发送通知的电子邮件地址。**注意**: 本项目并不提供任何电子邮件服务，需要使用你提供的第三方电子邮件服务通过SMTP协议发送电子邮件，因此需要你提供用于发送通知的电子邮件地址。*一个小技巧是，如果你希望如果你希望通过邮件提醒自己签证状态，你可以在此处填写和收取通知相同的电子邮件地址，即可以使用同一个邮箱收发邮件，换句话说你可以自己给自己发邮件。*
-
 
 - TO: 接收通知的电子邮件地址。您可以发送到多个电子邮件地址，用“|”分割多个电子邮件地址(“|”这个符号通常在退格键Backspace的下方，回车Enter的上方，你通常需要使用上档Shift键打出这个符号)，不用且不可添加任何空格。下面是几个例子: 
   - 发送到一个邮箱: `your_mail@email.com`
   - 发送到多个邮箱: `first@email.com|second@email.com|third@email.com`
 
-
 - PASSWORD: 在`FROM`填写的邮箱的密码。**注意**: 对于一些电子邮箱(如QQ邮箱)，你应该在这里使用“授权码”而不是邮箱的密码，因为这个项目使用SMTP协议发送电子邮件。有关详细信息，请查看邮箱服务提供商的SMTP使用方法。
 
+- SMTP: 可选，设置SMTP服务器 (e.g. `smtp.example.com`, `smtp.example.com:587`)
 
-- TIMEZONE: 可选，设置自己的时区，以免打扰睡眠。例如: `Asia/Shanghai` 或 `America/New_York`。如果你设置了时区，程序默认不会在你的时区的晚上10点到第二天早上8点发送。**注意**: 这里使用的是IANA时区数据库的时区表示法，并不是简单的地理位置的组合。例如，如果你希望使用北京时间，你的时区应该是`Asia/Shanghai`而**不是** ~~`Asia/Beijing`~~
+#### Telegram机器人通知
 
+如果你想通过Telegram Bot发送通知，需要设置如下环境变量。
+
+Telegram Bot [创建教程](https://www.cytron.io/tutorial/how-to-create-a-telegram-bot-get-the-api-key-and-chat-id)
+
+- TG_BOT_TOKEN: Bot 密钥
+
+- TG_CHAT_ID: 聊天 ID，获取方法见教程
 
 ### 在 Github Actions 的使用方法
 

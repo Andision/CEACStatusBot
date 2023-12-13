@@ -6,7 +6,7 @@ import time
 
 from CEACStatusBot.captcha import CaptchaHandle, OnnxCaptchaHandle
 
-def query_status(location, application_num, captchaHandle:CaptchaHandle=OnnxCaptchaHandle("captcha.onnx")):
+def query_status(location, application_num, passport_number, surname, captchaHandle:CaptchaHandle=OnnxCaptchaHandle("captcha.onnx")):
     isSuccess = False
     failCount = 0
 
@@ -70,6 +70,8 @@ def query_status(location, application_num, captchaHandle:CaptchaHandle=OnnxCapt
             "ctl00$ContentPlaceHolder1$Location_Dropdown": location,
             "ctl00$ContentPlaceHolder1$Visa_Case_Number": application_num,
             "ctl00$ContentPlaceHolder1$Captcha": "34HDM",
+            "ctl00$ContentPlaceHolder1$Passport_Number": passport_number,
+            "ctl00$ContentPlaceHolder1$Surname": surname,
             "LBD_VCID_c_status_ctl00_contentplaceholder1_defaultcaptcha": "a81747f3a56d4877bf16e1a5450fb944",
             "LBD_BackWorkaround_c_status_ctl00_contentplaceholder1_defaultcaptcha": "1",
             "__ASYNCPOST": "true",

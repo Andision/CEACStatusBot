@@ -6,20 +6,18 @@ from email.header import Header
 from .handle import NotificationHandle
 
 class EmailNotificationHandle(NotificationHandle):
-    def __init__(self,fromEmail:str,toEmail:str,emailPassword:str,hostAddress:str) -> None:
+    def __init__(self,fromEmail:str,toEmail:str,emailPassword:str,hostAddress:str='') -> None:
         super().__init__()
         self.__fromEmail = fromEmail
         self.__toEmail = toEmail.split("|")
         self.__emailPassword = emailPassword
-        self.__hostAddress = hostAddress
-
-    def __init__(self,fromEmail:str,toEmail:str,emailPassword:str) -> None:
-        super().__init__()
-        self.__fromEmail = fromEmail
-        self.__toEmail = toEmail.split("|")
-        self.__emailPassword = emailPassword
-        self.__hostAddress = "smtp."+fromEmail.split("@")[1]
-        
+        self.__hostAddress = hostAddress or "smtp."+fromEmail.split("@")[1]
+        if ':' in self.__hostAddress:
+            [addr, port] = self.__hostAddress.split(':')
+            self.__hostAddress = addr
+            self.__hostPort = int(port)
+        else:
+            self.__hostPort = 0
 
     def send(self,result):
         
@@ -34,7 +32,7 @@ class EmailNotificationHandle(NotificationHandle):
         msg['To'] = ";".join(self.__toEmail)
         msg.attach(MIMEText(mail_content,'plain','utf-8'))
 
-        smtp = SMTP_SSL(self.__hostAddress) # ssl登录
+        smtp = SMTP_SSL(self.__hostAddress, self.__hostPort) # ssl登录
         print(smtp.login(self.__fromEmail,self.__emailPassword))
         print(smtp.sendmail(self.__fromEmail,self.__toEmail,msg.as_string()))
         smtp.quit()
