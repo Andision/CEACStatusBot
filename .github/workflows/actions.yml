@@ -3,10 +3,10 @@ name: run main.py
 on:
   push:
     branches:
-      - iv_version
+      - main
   workflow_dispatch:
   schedule:
-    - cron: "0 9,17,23 * * 1-5" # At 09:00 AM, 05:00 PM and 11:00 PM, Monday through Friday
+    - cron: "23 8,16,22 * * 1-5" # At 09:00 AM, 05:00 PM and 11:00 PM, Monday through Friday
 
 jobs:
   build:
@@ -21,7 +21,7 @@ jobs:
           python-version: "3.10" # install the python version needed
 
       - name: cache python packages
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
