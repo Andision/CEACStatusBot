@@ -3,10 +3,10 @@ name: run main.py
 on:
   push:
     branches:
-      - main
+      - iv_version
   workflow_dispatch:
   schedule:
-    - cron: '13,43 * * * *' # At 00:00 on Monday
+    - cron: "0 9,17,23 * * 1-5" # At 09:00 AM, 05:00 PM and 11:00 PM, Monday through Friday
 
 jobs:
   build:
@@ -18,7 +18,7 @@ jobs:
       - name: setup python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10' # install the python version needed
+          python-version: "3.10" # install the python version needed
 
       - name: cache python packages
         uses: actions/cache@v2
@@ -35,11 +35,7 @@ jobs:
 
       - name: execute py script # run main.py
         env:
-          LOCATION: ${{ secrets.LOCATION }}
           NUMBER: ${{ secrets.NUMBER }}
-          PASSPORT_NUMBER: ${{ secrets.PASSPORT_NUMBER }}
-          SURNAME: ${{ secrets.SURNAME }}
-          TIMEZONE: ${{ secrets.TIMEZONE }}
           FROM: ${{ secrets.FROM }}
           TO: ${{ secrets.TO }}
           PASSWORD: ${{ secrets.PASSWORD }}

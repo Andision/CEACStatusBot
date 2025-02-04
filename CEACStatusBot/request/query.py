@@ -6,7 +6,7 @@ import time
 
 from CEACStatusBot.captcha import CaptchaHandle, OnnxCaptchaHandle
 
-def query_status(location, application_num, passport_number, surname, captchaHandle:CaptchaHandle=OnnxCaptchaHandle("captcha.onnx")):
+def query_status(application_num, captchaHandle:CaptchaHandle=OnnxCaptchaHandle("captcha.onnx")):
     isSuccess = False
     failCount = 0
 
@@ -29,7 +29,7 @@ def query_status(location, application_num, passport_number, surname, captchaHan
         # -------NIV page------
         try:
             # 发送请求的代码
-            r = session.get(url=f"{ROOT}/ceacstattracker/status.aspx?App=NIV", headers=headers)
+            r = session.get(url=f"{ROOT}/ceacstattracker/status.aspx?App=IV", headers=headers)
         except Exception as e:
             # 处理连接错误异常
             print(e)
@@ -66,12 +66,9 @@ def query_status(location, application_num, passport_number, surname, captchaHan
             "__VIEWSTATE": "8GJOG5GAuT1ex7KX3jakWssS08FPVm5hTO2feqUpJk8w5ukH4LG/o39O4OFGzy/f2XLN8uMeXUQBDwcO9rnn5hdlGUfb2IOmzeTofHrRNmB/hwsFyI4mEx0mf7YZo19g",
             "__VIEWSTATEGENERATOR": "DBF1011F",
             "__VIEWSTATEENCRYPTED": "",
-            "ctl00$ContentPlaceHolder1$Visa_Application_Type": "NIV",
-            "ctl00$ContentPlaceHolder1$Location_Dropdown": location,
+            "ctl00$ContentPlaceHolder1$Visa_Application_Type": "IV",
             "ctl00$ContentPlaceHolder1$Visa_Case_Number": application_num,
             "ctl00$ContentPlaceHolder1$Captcha": "34HDM",
-            "ctl00$ContentPlaceHolder1$Passport_Number": passport_number,
-            "ctl00$ContentPlaceHolder1$Surname": surname,
             "LBD_VCID_c_status_ctl00_contentplaceholder1_defaultcaptcha": "a81747f3a56d4877bf16e1a5450fb944",
             "LBD_BackWorkaround_c_status_ctl00_contentplaceholder1_defaultcaptcha": "1",
             "__ASYNCPOST": "true",
@@ -108,7 +105,6 @@ def query_status(location, application_num, passport_number, surname, captchaHan
             continue
             # return {"success": False}
         application_num_returned = soup.find("span", id="ctl00_ContentPlaceHolder1_ucApplicationStatusView_lblCaseNo").string
-        assert application_num_returned == application_num
         status = status_tag.string
         visa_type = soup.find("span", id="ctl00_ContentPlaceHolder1_ucApplicationStatusView_lblAppName").string
         case_created = soup.find("span", id="ctl00_ContentPlaceHolder1_ucApplicationStatusView_lblSubmitDate").string
