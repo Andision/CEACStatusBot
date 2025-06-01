@@ -1,8 +1,8 @@
 # CEACStatusBot🤖
 
+自动从[CEAC](https://ceac.state.gov/CEACStatTracker/Status.aspx?App=NIV)查询您的美国签证申请状态，并在状态更新时立即通知您！
 
-自动从[CEAC](https://ceac.state.gov/CEACStatTracker/Status.aspx?App=NIV)查询您的美国签证申请状态，并立即通知您!
-
+感谢 [Andision](https://github.com/Andision)的 [CEACStatusBot](https://github.com/Andision/CEACStatusBot), 这个分支更新了当前的依赖并重构了代码，以便在状态发生变化时通知用户。
 
 ## 使用
 
@@ -14,13 +14,13 @@
 
 
 - LOCATION: 您申请签证的使领馆的地点代码。要查找使领馆对应的代码，请参考[此表](LOCATION.md)。中国内地的部分使领馆代码如下表：
-    | 代码 | 位置                      |
-    |------|-------------------------------|
-    |BEJ|CHINA, BEIJING|
-    |CHE|CHINA, CHENGDU|
-    |GUZ|CHINA, GUANGZHOU|
-    |SHG|CHINA, SHANGHAI|
-    |SNY|CHINA, SHENYANG|
+    | 代码 | 位置             |
+    | ---- | ---------------- |
+    | BEJ  | CHINA, BEIJING   |
+    | CHE  | CHINA, CHENGDU   |
+    | GUZ  | CHINA, GUANGZHOU |
+    | SHG  | CHINA, SHANGHAI  |
+    | SNY  | CHINA, SHENYANG  |
 
 
 - NUMBER: 您在CEAC网站中的Application ID or Case Number(例如`AA0020AKAX` 或 `2012118 345 0001`)。具体信息请查看[CEAC](https://ceac.state.gov/CEACStatTracker/Status.aspx?App=NIV)网站的说明。**注意**: 请先在[CEAC](https://ceac.state.gov/CEACStatTracker/Status.aspx?App=NIV)网站确认你能够正确获取你的签证状态。这一项目的目的是简化从[CEAC](https://ceac.state.gov/CEACStatTracker/Status.aspx?App=NIV)网站获取签证信息的过程，并不能比人工方式获得更多的信息。
