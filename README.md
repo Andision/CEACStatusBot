@@ -22,6 +22,8 @@ You can deploy it to your own machine, but it is highly recommended to use Githu
 
 - TIMEZONE: optional, set your timezone to avoid disturbing during sleep. :-) Some example: `Asia/Shanghai` `America/New_York`
 
+- GH_TOKEN: to access previous status, you need to set a Github token with `repo` scope. You can create a new token in Github -> Settings -> Developer settings -> Personal access tokens.
+
 #### Notification by Email
 
 Add the following env variables if you want to send notification by email.
