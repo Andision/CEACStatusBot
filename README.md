@@ -1,4 +1,4 @@
-# CEACStatusBotPlus🤖
+# CEACStatusBotPlus
 
 [查看中文文档](README.Chinese.md)
 
