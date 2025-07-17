@@ -13,14 +13,7 @@
 ###  环境变量
 
 
-- LOCATION: 您申请签证的使领馆的地点代码。要查找使领馆对应的代码，请参考[此表](LOCATION.md)。中国内地的部分使领馆代码如下表：
-    | 代码 | 位置             |
-    | ---- | ---------------- |
-    | BEJ  | CHINA, BEIJING   |
-    | CHE  | CHINA, CHENGDU   |
-    | GUZ  | CHINA, GUANGZHOU |
-    | SHG  | CHINA, SHANGHAI  |
-    | SNY  | CHINA, SHENYANG  |
+- LOCATION: 您申请签证的使领馆的地点。要查找使领馆对应的名称，请参考[此表](LOCATION.md)。请直接使用使馆位置名，如`CHINA, BEIJING`。
 
 
 - NUMBER: 您在CEAC网站中的Application ID or Case Number(例如`AA0020AKAX` 或 `2012118 345 0001`)。具体信息请查看[CEAC](https://ceac.state.gov/CEACStatTracker/Status.aspx?App=NIV)网站的说明。**注意**: 请先在[CEAC](https://ceac.state.gov/CEACStatTracker/Status.aspx?App=NIV)网站确认你能够正确获取你的签证状态。这一项目的目的是简化从[CEAC](https://ceac.state.gov/CEACStatTracker/Status.aspx?App=NIV)网站获取签证信息的过程，并不能比人工方式获得更多的信息。
