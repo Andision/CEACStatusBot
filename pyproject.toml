@@ -10,5 +10,6 @@ dependencies = [
     "numpy>=2.2.6",
     "onnxruntime>=1.22.0",
     "pillow>=11.2.1",
+    "pytz>=2025.2",
     "requests>=2.32.3",
 ]
