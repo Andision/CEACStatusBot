@@ -12,7 +12,7 @@ on:
         default: false
         type: boolean
   schedule:
-    - cron: '17 * * * *' # At 00:00 on Monday
+    - cron: '10 0,6,12 * * *' # 08:10 / 14:10 / 20:10 UTC+8 daily (10-min offset to avoid :00 peak)
 
 jobs:
   build:
