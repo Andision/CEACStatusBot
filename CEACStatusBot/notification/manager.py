@@ -59,8 +59,17 @@ class NotificationManager:
         # Load the previous statuses from the file
         statuses = self.__load_statuses()
 
-        # Check if the current status is different from the last recorded status
-        if not statuses or current_status != statuses[-1].get("status", None) or current_last_updated != statuses[-1].get("last_updated", None):
+        force_notify = os.getenv("FORCE_NOTIFY", "").lower() in ("1", "true", "yes")
+        # Check if the current status is different from the last recorded status,
+        # or if notifications are forced for manual testing
+        status_changed = (
+            not statuses
+            or current_status != statuses[-1].get("status", None)
+            or current_last_updated != statuses[-1].get("last_updated", None)
+        )
+        if force_notify or status_changed:
+            if force_notify:
+                print("FORCE_NOTIFY set - sending notification despite unchanged status.")
             self.__save_current_status(current_status, current_last_updated)
             self.__send_notifications(res)
         else:
@@ -74,11 +83,9 @@ class NotificationManager:
 
     def __save_current_status(self, status: str, last_updated: str) -> None:
         statuses = self.__load_statuses()
-        statuses.append({
-            "status": status,
-            "last_updated": last_updated,
-            "date": datetime.datetime.now().isoformat()
-        })
+        statuses.append(
+            {"status": status, "last_updated": last_updated, "date": datetime.datetime.now().isoformat()}
+        )
 
         with open(self.__status_file, "w") as file:
             json.dump({"statuses": statuses}, file)
