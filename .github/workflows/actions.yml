@@ -5,6 +5,12 @@ on:
     branches:
       - main
   workflow_dispatch:
+    inputs:
+      force_notify:
+        description: 'Force send notification'
+        required: false
+        default: false
+        type: boolean
   schedule:
     - cron: '17 * * * *' # At 00:00 on Monday
 
@@ -43,6 +49,7 @@ jobs:
           PASSPORT_NUMBER: ${{ secrets.PASSPORT_NUMBER }}
           SURNAME: ${{ secrets.SURNAME }}
           TIMEZONE: ${{ secrets.TIMEZONE }}
+          # ACTIVE_HOURS: ${{ secrets.ACTIVE_HOURS }}
           FROM: ${{ secrets.FROM }}
           TO: ${{ secrets.TO }}
           PASSWORD: ${{ secrets.PASSWORD }}
@@ -51,6 +58,7 @@ jobs:
           TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
+          FORCE_NOTIFY: ${{ github.event.inputs.force_notify || 'false' }}
         run: uv run trigger.py
 
       - name: Upload status artifact
