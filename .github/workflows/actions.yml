@@ -49,6 +49,10 @@ jobs:
           SMTP: ${{ secrets.SMTP }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
+          BARK_DEVICE_KEY: ${{ secrets.BARK_DEVICE_KEY }}
+          BARK_SERVER: ${{ secrets.BARK_SERVER }}
+          BARK_GROUP: ${{ secrets.BARK_GROUP }}
+          BARK_SOUND: ${{ secrets.BARK_SOUND }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: uv run trigger.py

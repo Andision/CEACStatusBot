@@ -5,6 +5,7 @@ import subprocess
 from dotenv import load_dotenv
 
 from CEACStatusBot import (
+    BarkNotificationHandle,
     EmailNotificationHandle,
     NotificationManager,
     TelegramNotificationHandle,
@@ -76,6 +77,24 @@ if BOT_TOKEN and CHAT_ID:
     notificationManager.addHandle(tgNotif)
 else:
     print("Telegram bot notification config missing or incomplete")
+
+
+# --- Optional: Bark notifications ---
+BARK_DEVICE_KEY = os.getenv("BARK_DEVICE_KEY")
+BARK_SERVER = os.getenv("BARK_SERVER") or "https://api.day.app"
+BARK_GROUP = os.getenv("BARK_GROUP") or "CEACStatusBot"
+BARK_SOUND = os.getenv("BARK_SOUND")
+
+if BARK_DEVICE_KEY:
+    bark_notification = BarkNotificationHandle(
+        BARK_DEVICE_KEY,
+        BARK_SERVER,
+        BARK_GROUP,
+        BARK_SOUND,
+    )
+    notificationManager.addHandle(bark_notification)
+else:
+    print("Bark notification config missing or incomplete")
 
 
 # --- Send notifications ---
