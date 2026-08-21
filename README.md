@@ -47,6 +47,18 @@ Create a Telegram bot and get the info below according to [this tutorial](https:
 
 - TG_CHAT_ID: the chat id you want to receive the notification
 
+#### Notification by Bark
+
+Install and open [Bark](https://github.com/Finb/Bark), then copy the device key from the push URL shown in the app (for example, the `YOUR_DEVICE_KEY` part of `https://api.day.app/YOUR_DEVICE_KEY/...`).
+
+- BARK_DEVICE_KEY: your Bark device key
+
+- BARK_SERVER: optional, your self-hosted Bark server URL; defaults to `https://api.day.app`
+
+- BARK_GROUP: optional, notification group; defaults to `CEACStatusBot`
+
+- BARK_SOUND: optional, a Bark sound name
+
 ### Github Actions
 
 1. folk this repo
@@ -54,7 +66,7 @@ Create a Telegram bot and get the info below according to [this tutorial](https:
 2. set your Environment Variables in `Github -> Settings -> Secrets and variables -> Actions -> New repository secret`
 ![image](docs/github.new.secret.png)
 
-3. check your workflow in Actions and your Mailbox / Telegram
+3. check your workflow in Actions and your Mailbox / Telegram / Bark app
 
 ### Local Usage
 You can also run this bot locally. 

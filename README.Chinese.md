@@ -52,6 +52,18 @@ Telegram Bot [创建教程](https://www.cytron.io/tutorial/how-to-create-a-teleg
 
 - TG_CHAT_ID: 聊天 ID，获取方法见教程
 
+#### Bark 通知
+
+安装并打开 [Bark](https://github.com/Finb/Bark)，从 App 显示的推送地址中复制设备密钥（例如 `https://api.day.app/YOUR_DEVICE_KEY/...` 中的 `YOUR_DEVICE_KEY` 部分）。
+
+- BARK_DEVICE_KEY: Bark 设备密钥
+
+- BARK_SERVER: 可选，自建 Bark 服务地址；默认使用 `https://api.day.app`
+
+- BARK_GROUP: 可选，通知分组；默认为 `CEACStatusBot`
+
+- BARK_SOUND: 可选，Bark 通知声音名称
+
 ### 在 Github Actions 的使用方法
 
 
@@ -62,7 +74,7 @@ Telegram Bot [创建教程](https://www.cytron.io/tutorial/how-to-create-a-teleg
 ![image](docs/github.new.secret.png)
 
 
-3. 查看 `Github Actions` 中的 `workflows` 是否正常运行并检查邮箱是否收到邮件。
+3. 查看 `Github Actions` 中的 `workflows` 是否正常运行，并检查邮箱、Telegram 或 Bark 是否收到通知。
 
 ### 本地使用
 

@@ -4,6 +4,11 @@ import time
 
 from CEACStatusBot.captcha import CaptchaHandle, OnnxCaptchaHandle
 
+
+def _normalize_application_num(application_num: str) -> str:
+    return "".join(character for character in application_num if character.isalnum()).casefold()
+
+
 def query_status(location, application_num, passport_number, surname, captchaHandle: CaptchaHandle = OnnxCaptchaHandle("captcha.onnx")):
     failCount = 0
     result = {
@@ -103,13 +108,20 @@ def query_status(location, application_num, passport_number, surname, captchaHan
         if not status_tag:
             continue
 
-        application_num_returned = soup.find("span", id="ctl00_ContentPlaceHolder1_ucApplicationStatusView_lblCaseNo").string
-        assert application_num_returned == application_num
-        status = status_tag.string
-        visa_type = soup.find("span", id="ctl00_ContentPlaceHolder1_ucApplicationStatusView_lblAppName").string
-        case_created = soup.find("span", id="ctl00_ContentPlaceHolder1_ucApplicationStatusView_lblSubmitDate").string
-        case_last_updated = soup.find("span", id="ctl00_ContentPlaceHolder1_ucApplicationStatusView_lblStatusDate").string
-        description = soup.find("span", id="ctl00_ContentPlaceHolder1_ucApplicationStatusView_lblMessage").string
+        application_num_tag = soup.find("span", id="ctl00_ContentPlaceHolder1_ucApplicationStatusView_lblCaseNo")
+        if not application_num_tag:
+            continue
+
+        application_num_returned = application_num_tag.get_text(strip=True)
+        if _normalize_application_num(application_num_returned) != _normalize_application_num(application_num):
+            print("CEAC returned a different application number; retrying.")
+            continue
+
+        status = status_tag.get_text(strip=True)
+        visa_type = soup.find("span", id="ctl00_ContentPlaceHolder1_ucApplicationStatusView_lblAppName").get_text(strip=True)
+        case_created = soup.find("span", id="ctl00_ContentPlaceHolder1_ucApplicationStatusView_lblSubmitDate").get_text(strip=True)
+        case_last_updated = soup.find("span", id="ctl00_ContentPlaceHolder1_ucApplicationStatusView_lblStatusDate").get_text(strip=True)
+        description = soup.find("span", id="ctl00_ContentPlaceHolder1_ucApplicationStatusView_lblMessage").get_text(strip=True)
 
         result.update({
             "success": True,
